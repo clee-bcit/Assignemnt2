@@ -42,6 +42,8 @@ function createSingleIndex() {
     const pTag = document.createElement('p');
 
     const textNode = document.createTextNode(contactList.name)
+    
+
 
     divNode.className = 'contact';
     divNode.appendChild(pTag);
@@ -69,26 +71,22 @@ function renderIndex() {
           address: "Warner Brothers Animation Lot",
           email: "whatsup@doc.example.com",
         },
-      ]
+    ]
 
     const main = document.querySelectorAll('.main');
+    
+    for(let i = 0; i < contactList.length; i++) { 
     const aNode = document.createElement('a');
     const divNode = document.createElement('div');
     const pTag = document.createElement('p');
 
-    const textNode = document.createTextNode(contactList.name)
-
+    pTag.append(contactList[i].name);
     divNode.className = 'contact';
     divNode.appendChild(pTag);
     aNode.appendChild(divNode);
     aNode.href = 'page3.html';
-    aNode.appendChild(pTag);
-    divNode.appendChild(textNode);
-    
-
-    for(let i = 0; i < 3; i++) {
-        main[0].appendChild(aNode.cloneNode(true));
-    }
+    main[0].appendChild(aNode);
+    };
 }
 
 // View Page //
