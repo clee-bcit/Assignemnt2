@@ -1,78 +1,44 @@
 /* Index Page */
+let contactList = [
+  {
+    name: "Roberta Dobbs",
+    phone: "778-555-1234",
+    address: "101 Main St, Anytown, USA",
+    email: "subgenius@slack.example.com",
+  }, 
+  {
+    name: "Bugs Bunny",
+    phone: "123-867-5309",
+    address: "Warner Brothers Animation Lot",
+    email: "whatsup@doc.example.com",
+  },
+]
+
 function cleanUpIndex() {
     const cleanUp = document.querySelectorAll('.contact');
+
+
     cleanUp.remove;
     for(let i = 0; i < cleanUp.length; i++) { cleanUp[i].remove();}
 }
 
-let contactList = [
-    {
-      name: "Roberta Dobbs",
-      phone: "778-555-1234",
-      address: "101 Main St, Anytown, USA",
-      email: "subgenius@slack.example.com",
-    }, 
-    {
-      name: "Bugs Bunny",
-      phone: "123-867-5309",
-      address: "Warner Brothers Animation Lot",
-      email: "whatsup@doc.example.com",
-    },
-  ]
-
-function createSingleIndex(contact) {
-    let contactList = [
-        {
-          name: "Roberta Dobbs",
-          phone: "778-555-1234",
-          address: "101 Main St, Anytown, USA",
-          email: "subgenius@slack.example.com",
-        }, 
-        {
-          name: "Bugs Bunny",
-          phone: "123-867-5309",
-          address: "Warner Brothers Animation Lot",
-          email: "whatsup@doc.example.com",
-        },
-      ]
-    
+// createSingleIndex(contactList[0]) //
+function createSingleIndex(contact) {    
     const main = document.querySelectorAll('.main');
     const aNode = document.createElement('a');
     const divNode = document.createElement('div');
     const pTag = document.createElement('p');
-
-    const textNode = document.createTextNode(contact.name)
-    
-
+    const textNode = document.createTextNode(contact.name);
 
     divNode.className = 'contact';
     divNode.appendChild(pTag);
     aNode.appendChild(divNode);
     aNode.href = 'page3.html';
-    aNode.appendChild(pTag);
-    divNode.appendChild(textNode);
+    pTag.appendChild(textNode);
     main[0].appendChild(aNode);
-
     }
 
-
 function renderIndex() {
-
-    let contactList = [
-        {
-          name: "Roberta Dobbs",
-          phone: "778-555-1234",
-          address: "101 Main St, Anytown, USA",
-          email: "subgenius@slack.example.com",
-        }, 
-        {
-          name: "Bugs Bunny",
-          phone: "123-867-5309",
-          address: "Warner Brothers Animation Lot",
-          email: "whatsup@doc.example.com",
-        },
-    ]
-
     const main = document.querySelectorAll('.main');
     
     for(let i = 0; i < contactList.length; i++) { 
@@ -89,13 +55,17 @@ function renderIndex() {
     };
 }
 
+
 /* View Page */
 function cleanUpView() {
     const cleanUp = document.querySelectorAll('.contactinfo');
     cleanUp.remove;
-    for(let i = 0; i < cleanUp.length; i++) { cleanUp[i].remove();}
+    for(let i = 0; i < cleanUp.length; i++) { 
+      cleanUp[i].remove(); }
 }
 
+
+// renderView(contactList[0]) //
 function renderView(contact) {
     const main = document.querySelectorAll('.main');
     const divContactinfoNode = document.createElement('div');
@@ -149,6 +119,7 @@ function renderView(contact) {
     main[0].appendChild(divContactinfoNode);
 }
 
+
 /* Create Page */
 
 function cleanUpCreate() {
@@ -182,7 +153,95 @@ function renderCreate() {
     const buttonPhone = document.createElement('button')
     const buttonAddress = document.createElement('button')
     const buttonEmail = document.createElement('button')
-    const buttonSave = document.createElement('button')
-    const buttonCancel = document.createElement('button')
+    const buttonSubmit = document.createElement('button')
+    const buttonReset = document.createElement('button')
+    const namePlus = document.createTextNode('+')
+    const phonePlus = document.createTextNode('+')
+    const addressPlus = document.createTextNode('+')
+    const emailPlus= document.createTextNode('+')
+    const saveText = document.createTextNode('Save Contact')
+    const cancelText = document.createTextNode('Cancel')
+
+
+    divContactedit.className = 'contactedit';
+
+    divContactimg.className = 'contactimg';
+    divContactimg.appendChild(imgNode);
+    imgNode.className = 'profilepic';
+    imgNode.alt = 'Profile picture';
+    divContactedit.appendChild(divContactimg);
+
+    divForm.className = 'form';
+
+    divInputName.className = 'inputcontainer';
+    inputName.type = 'text';
+    inputName.id = 'contactname';
+    inputName.name = 'contactname';
+    inputName.placeholder = 'Contact Name';
+    divInputName.appendChild(inputName);
+    buttonName.className = 'extrafield';
+    buttonName.id = 'extranamefiled';
+    buttonName.name = 'extranamefield';
+    buttonName.appendChild(namePlus);
+    divInputName.appendChild(buttonName);
+    formNode.appendChild(divInputName);
+
+    divInputPhone.className = 'inputcontainer';
+    inputPhone.type = 'tel';
+    inputPhone.id = 'contactphone';
+    inputPhone.name = 'contatphone'
+    inputPhone.placeholder = 'Contact Address';
+    divInputPhone.appendChild(inputPhone);
+    buttonPhone.className = 'extrafield';
+    buttonPhone.id = 'extraphonefield';
+    buttonPhone.name = 'extraphonefield';
+    buttonPhone.appendChild(phonePlus);
+    divInputPhone.appendChild(buttonPhone);
+    formNode.appendChild(divInputPhone);
+
+    divInputAddress.className = 'inputcontainer';
+    inputAddress.type = 'text'
+    inputAddress.id = 'contactaddress';
+    inputAddress.name = 'contactaddress';
+    inputAddress.placeholder = 'Contact Address';
+    divInputAddress.appendChild(inputAddress);
+    buttonAddress.className = 'extrafield';
+    buttonAddress.id = 'extraaddressfield';
+    buttonAddress.name = 'extraaddressfield';
+    buttonAddress.appendChild(addressPlus);
+    divInputAddress.appendChild(buttonAddress)
+    formNode.appendChild(divInputAddress);
+
+    divInputEmail.className = 'inputcontainer';
+    inputEmail.type = 'email';
+    inputEmail.id = 'contactemail';
+    inputEmail.name = 'contactemail';
+    inputEmail.placeholder = 'Contact Email';
+    divInputEmail.appendChild(inputEmail);
+    buttonEmail.className = 'extrafield';
+    buttonEmail.id = 'extraemailfield';
+    buttonEmail.name = 'extraemailfield';
+    buttonEmail.appendChild(emailPlus);
+    divInputEmail.appendChild(buttonEmail)
+    formNode.appendChild(divInputEmail);
+
+    divInputButtons.className = 'buttons';
+    buttonSubmit.type = 'submit';
+    buttonSubmit.className = 'button save';
+    buttonSubmit.id = 'savecontact';
+    buttonSubmit.name = 'savecontact';
+    buttonSubmit.appendChild(saveText)
+    divInputButtons.appendChild(buttonSubmit);
+    buttonReset.type = 'reset';
+    buttonReset.className = 'button cancel'
+    buttonReset.id = 'cancel';
+    buttonReset.name = 'cancel';
+    buttonReset.appendChild(cancelText);
+    divInputButtons.appendChild(buttonReset);
+    formNode.appendChild(divInputButtons);
+    
+    divContactedit.appendChild(formNode);
+
+    main[0].appendChild(divContactedit)
 
 }
