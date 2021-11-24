@@ -245,3 +245,17 @@ function renderCreate() {
     main[0].appendChild(divContactedit)
 
 }
+
+// #2
+function diableHref() {
+  document.getElementById("contactshome").removeAttribute("href")
+}
+
+document.querySelector('#contactshome').addEventListener('click', () => {
+  cleanUpIndex();
+  renderIndex();
+  diableHref();
+
+})
+
+// #3
