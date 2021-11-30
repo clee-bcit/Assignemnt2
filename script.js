@@ -14,9 +14,14 @@ let contactList = [
   },
 ]
 
+window.onload = function (e) {
+  e.preventDefault();
+  cleanUpIndex();
+  renderIndex();
+}
+
 function cleanUpIndex() {
     const cleanUp = document.querySelectorAll('.contact');
-
 
     cleanUp.remove;
     for(let i = 0; i < cleanUp.length; i++) { cleanUp[i].remove();}
@@ -36,6 +41,11 @@ function createSingleIndex(contact) {
     aNode.href = 'page3.html';
     pTag.appendChild(textNode);
     main[0].appendChild(aNode);
+
+    // document.querySelector('p').addEventListener('click', function (e) {
+    //   e.preventDefault()
+    // })
+
     }
 
 function renderIndex() {
@@ -66,7 +76,7 @@ function cleanUpView() {
 
 
 // renderView(contactList[0]) //
-function renderView(contact) {
+function renderView() {
     const main = document.querySelectorAll('.main');
     const divContactinfoNode = document.createElement('div');
     const divConstactnameNode = document.createElement('div')
@@ -117,7 +127,21 @@ function renderView(contact) {
     divContactinfoNode.appendChild(divButtonsNode);
 
     main[0].appendChild(divContactinfoNode);
+    
+    
+    document.querySelector('.close').addEventListener('click', () => {
+    
+      cleanUpCreate();
+      cleanUpIndex();
+      cleanUpView();
+      renderIndex();
+    })
+    document.querySelector('.edit').addEventListener('click', () => {
+      console.log('NOTHING')
+    })
+  
 }
+
 
 
 /* Create Page */
@@ -190,7 +214,7 @@ function renderCreate() {
     inputPhone.type = 'tel';
     inputPhone.id = 'contactphone';
     inputPhone.name = 'contatphone'
-    inputPhone.placeholder = 'Contact Address';
+    inputPhone.placeholder = 'Contact Phone';
     divInputPhone.appendChild(inputPhone);
     buttonPhone.className = 'extrafield';
     buttonPhone.id = 'extraphonefield';
@@ -244,18 +268,44 @@ function renderCreate() {
 
     main[0].appendChild(divContactedit)
 
+    document.querySelector('.cancel').addEventListener('click', () => {
+      cleanUpCreate();
+      cleanUpIndex();
+      cleanUpView();
+      renderIndex();
+    })
+
+    var nameField = document.getElementById('contactname')
+    var phoneField = document.getElementById('contactphone')
+    var addressField = document.getElementById('contactaddress')
+    var emailField = document.getElementById('contactemail')
+
+    document.querySelector('form').addEventListener('submit', function (e) {
+      e.preventDefault();
+      console.log(nameField.value, phoneField.value, addressField.value, emailField.value)
+      cleanUpCreate();
+      renderCreate();
+    })
+
 }
+
 
 // #2
-function diableHref() {
-  document.getElementById("contactshome").removeAttribute("href")
-}
-
-document.querySelector('#contactshome').addEventListener('click', () => {
+document.querySelector('#contactshome').addEventListener('click', function (e) {
+  e.preventDefault();
   cleanUpIndex();
+  cleanUpCreate();
+  cleanUpView();
   renderIndex();
-  diableHref();
 
 })
 
 // #3
+document.querySelector('#newcontact').addEventListener('click', function (e) {
+  e.preventDefault();
+  cleanUpIndex();
+  cleanUpCreate();
+  cleanUpView();
+  renderCreate();
+
+})
